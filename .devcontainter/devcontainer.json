@@ -1,0 +1,18 @@
+{
+  "name": "Java Dev Container",
+  "image": "maven:3.8.6-openjdk-11",
+  "workspaceFolder": "/app",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/app,type=bind",
+    "source=${env:HOME}/.m2,target=/root/.m2,type=bind"
+  ],
+  "extensions": [
+    "redhat.java",
+    "vscjava.vscode-java-pack",
+    "vscjava.vscode-maven"
+  ],
+  "settings": {
+    "java.home": "/usr/local/openjdk-11"
+  },
+  // "postCreateCommand": "mvn clean install"
+}
