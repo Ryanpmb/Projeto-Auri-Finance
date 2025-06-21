@@ -18,13 +18,13 @@ public class ValidateInputService implements IValidateInputService{
     @Override
     public boolean validateUserEmail(String email)
     {
-        return email.trim().length() < 20 || !email.contains("@") || !email.contains(".com");
+        return email.trim().length() < 2 || !email.contains("@") || !email.contains(".com");
     }
 
     @Override
     public boolean validatePassword(String password, String confirmedPassword)
     {
-        return password.trim().length() < 8 || password != confirmedPassword;
+        return password.trim().length() < 8 || !password.equalsIgnoreCase(confirmedPassword);
     }
 
     @Override

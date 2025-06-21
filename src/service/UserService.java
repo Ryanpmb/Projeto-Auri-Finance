@@ -1,5 +1,6 @@
 package service;
 
+import java.util.List;
 import java.util.Scanner;
 
 import javax.management.RuntimeErrorException;
@@ -23,22 +24,25 @@ public class UserService implements IUserService {
     {
         try {
             user.setName(this.registerUserName(scanner));
-        user.setDate_of_birth(this.registerUserDateOfBirth(scanner));
-        user.setPhone_number(this.registerUserPhoneNumber(scanner));
-        user.setEmail(this.registerUserEmail(scanner));
-        user.setPassword(this.registerUserPassword(scanner));
-        user.setRoleId(this.registerUserRole(user));
-        user.setCpf(this.registerUserCpf(scanner));
-        user.setAddress(this.registerUserAdress(scanner));
-        
-        return this.userRepository.create(user);
+            user.setDate_of_birth(this.registerUserDateOfBirth(scanner));
+            user.setPhone_number(this.registerUserPhoneNumber(scanner));
+            user.setEmail(this.registerUserEmail(scanner));
+            user.setPassword(this.registerUserPassword(scanner));
+            user.setRoleId(this.registerUserRole(user));
+            user.setCpf(this.registerUserCpf(scanner));
+            user.setAddress(this.registerUserAdress(scanner));
+            
+            return this.userRepository.create(user);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao criar o usuário: " + e.getMessage());
         }
 
     }
 
-    
+    public List<User> listUsers()
+    {
+        return this.userRepository.findMany();
+    }
 
     private String registerUserName(Scanner scanner)
     {

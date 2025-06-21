@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   java-app:
     image: maven:3.8.6-openjdk-11
@@ -5,27 +7,36 @@ services:
     volumes:
       - ./:/app
       - ~/.m2:/root/.m2
+      - ./lib:/app/lib  # monte a pasta onde está o driver PostgreSQL
     command: tail -f /dev/null
     depends_on:
-      - mysql-db
+      - postgres-db
     environment:
-      - DB_HOST=mysql-db
-      - DB_PORT=3306
+      - DB_HOST=postgres-db
+      - DB_PORT=5432
       - DB_NAME=app_db
       - DB_USER=devuser
       - DB_PASSWORD=devpassword
+    networks:
+      - auri-network
 
-  mysql-db:
-    image: mysql:8.0
-    container_name: mysql-db
+  postgres-db:
+    image: postgres:15
+    container_name: postgres-db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: senha123
-      MYSQL_DATABASE: app_db
+      POSTGRES_DB: app_db
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpassword
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - auri-network
 
 volumes:
-  mysql_data:
+  postgres_data:
+
+networks:
+  auri-network:

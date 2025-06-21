@@ -7,6 +7,5 @@ import model.User;
 
 public interface IUserService {
     public User create(Scanner scanner, User user);
-    public User findById(int userId);
-    public List<User> findMany();
+    public List<User> listUsers();
 }
