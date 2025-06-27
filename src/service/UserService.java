@@ -15,7 +15,7 @@ public class UserService implements IUserService {
     private IUserRepository userRepository;
 
     public UserService(IValidateInputService validateInputService, IUserRepository userRepository){
-        this.validateInputService =validateInputService;
+        this.validateInputService = validateInputService;
         this.userRepository = userRepository;
     }
 

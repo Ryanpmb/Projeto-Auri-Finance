@@ -7,8 +7,8 @@ services:
     volumes:
       - ./:/app
       - ~/.m2:/root/.m2
-      - ./lib:/app/lib  # monte a pasta onde está o driver PostgreSQL
-    command: tail -f /dev/null
+      - ./lib:/app/lib
+    command: tail -f /dev/null 
     depends_on:
       - postgres-db
     environment:

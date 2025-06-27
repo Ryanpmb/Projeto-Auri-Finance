@@ -1,3 +1,5 @@
+package main;
+
 import java.util.Scanner;
 
 import contracts.repository.IUserRepository;
